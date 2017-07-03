@@ -1,7 +1,741 @@
-@import "normalize.less";
+@mobile-width-only: ~'(max-width: 767px)';
 
-@import "common.less";
-@import "variables.less";
-@import "mixins.less";
+img {
+  width: 100%;
+  height: auto;
+}
 
+@media @mobile-width-only {
+  #page-wrapper {
+    width: auto;
+  }
+  
+  // Хедер
+  #header {
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    margin-top: 0;
+    background-color: white;
+    box-shadow: 0 1px 5px #bababa;
+  }
+  
+  #logo {
+    width: 82px;
+    height: 50px;
+    margin-bottom: 0;
+    margin-left: 15px;
+  }
+  
+  #site-slogan {
+    display: none;
+  }
+  
+  #header-contacts {
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+  }
+  
+  #header-contacts-links {
+    order: 2;
+    text-transform: none;
+    text-align: center;
+    
+    & .link-eng {
+      font-size: 14px;
+    }
+  }
+  
+  .phone {
+    margin-right: 25px;
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    font-size: 0;
+    
+    & #phone_1 {
+      display: none;
+    }
+    
+    & a {
+      display: block;
+      height: 100%;
+      background-image: url("../img/phone-call.png");
+      background-repeat: no-repeat;
+      background-size: 20px 20px;
+    }
+  }
+  
+  #header-contacts-feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    order: 1;
+    margin-top: -15px;
+    text-transform: none;
+    text-align: center;
+  }
+  
+  #popup-order {
+    order: 2;
+    font-size: 14px;
+  }
+  
+  .social_icons {
+    position: relative;
+    display: flex;
+    order: 1;
+    margin-bottom: 10px;
+    
+    & a {
+      display: block;
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+      margin-left: 10px;
+      background-repeat: no-repeat;
+      background-size: 32px 32px;
+      border-radius: 5px;
+      transition: all 0.2s ease-out;
+      
+      &:nth-child(1) {
+        background-image: url("../img/facebook.png");
+      }
+      
+      &:nth-child(2) {
+        background-image: url("../img/vk.png");
+      }
+      
+      &:nth-child(3) {
+        background-image: url("../img/google-plus.png");
+      }
+      
+      &:nth-child(4) {
+        background-image: url("../img/linkedin.png");
+      }
+      
+      img {
+        display: none;
+      }
+    }
+  }
+  
+  .nav-toggle {
+    position: relative;
+    width: 22px;
+    height: 20px;
+    margin-right: 15px;
+    
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 2px;
+      width: 18px;
+      height: 4px;
+      background-color: black;
+      box-shadow: 0 7px 0 black, 0 -7px 0 black;
+      transition: all 0.2s ease-out;
+    }
+  }
+  
+  .main-menu-outer--active .nav-toggle {
+    
+    &::before {
+      left: -5px;
+      width: 25px;
+      box-shadow: none;
+      transform: rotate(45deg);
+    }
+    
+    &::after {
+      left: -5px;
+      width: 25px;
+      box-shadow: none;
+      transform: rotate(-45deg);
+    }
+  }
+  
+  #header .secondary-menu-outer {
+    display: none;
+  }
+
+  #main-menu-outer {
+    display: none;
+  }
+  
+  .main-menu-outer--active #main-menu-outer {
+    position: absolute;
+    top: 70px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 20px;
+    background-color: white;
+    border: none;
+    box-shadow: 0 1px 5px #bababa;
+    
+    & #main-menu-wrapper {
+      max-height: 400px;
+      margin-bottom: 10px;
+    
+      & ul#main-menu {
+        display: flex !important;
+        flex-direction: column;
+        height: auto;
+        margin-bottom: 15px;
+      
+        & li {
+          display: block !important;
+          height: 50px;
+          padding-top: 0;
+          border-top: 1px solid #bababa;
+          
+          &:last-child {
+            border-bottom: 1px solid #bababa;
+          }
+        
+          & a {
+            height: 50px;
+            padding-left: 15px;
+            font-size: 15px;
+            line-height: 50px;
+            text-transform: none;
+            text-align: left;
+            text-decoration: none;
+            letter-spacing: 0.065em;
+            color: black;
+            border-right: none;
+            
+            &:hover {
+              color: #cc2834;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  #send_request {
+    position: relative !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: auto !important;
+    margin: 0 15px;
+    font-weight: normal !important;
+    text-transform: none !important;
+  }
+    
+  #main-wrapper {
+    margin-top: 70px;
+    padding-bottom: 0;
+  }
+  
+  // Партнёры
+  #content {
+    display: flex;
+    flex-direction: column;
+    
+    & > div {
+      
+      &:first-child {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        order: 4;
+        margin: 0 15px !important;
+        border-top: 8px solid black;
+        
+        & h2 {
+          width: 100%;
+          margin-top: 15px;
+          font-family: "Arial Narrow",Arial,Helvetica,serif;
+          font-size: 22px;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+  
+  #awards_front_wrapper {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    
+    & #awards_front_container {
+      display: flex;
+      align-items: center;
+      margin-left: 0;
+      
+      & .item {
+        width: 100px !important;
+        margin: 0 15px;
+        padding-top: 0 !important;
+        
+        &:nth-child(2) {
+          display: none;
+        }
+        
+        & a {
+          
+          & img {
+            width: 100% !important;
+            margin-top: 0 !important;
+          }
+        }
+      }
+    }
+  }
+  
+  #awards_front_wrapper_left,
+  #awards_front_wrapper_right {
+    width: 20px;
+    height: auto;
+    background-size: 17px auto;
+  }
+  
+  // Услуги
+  #services-menu {
+    margin-bottom: 25px;
+    border: none;
+  
+    & #services-menu-name {
+      font-size: 22px;
+    }
+  }
+  
+  #services-menu-links {
+    margin-right: 15px;
+    margin-left: 15px;
+    display: flex;
+    flex-wrap: wrap;
+  
+    & li {
+      position: relative;
+      width: 50%;
+      border: none;
+      
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width:20px;
+        height: 20px;
+        transform: translateX(-10px);
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+      }
+      
+      &:nth-child(1)::before {
+        background-image: url("../img/flag.png");
+      }
+      
+      &:nth-child(2)::before {
+        background-image: url("../img/analytics.png");
+      }
+      
+      &:nth-child(3)::before {
+        background-image: url("../img/group.png");
+      }
+      
+      &:nth-child(4)::before {
+        background-image: url("../img/televisions.png");
+      }
+      
+      & .description {
+        width: 105px;
+        margin: 0 auto;
+        padding-top: 25px;
+        padding-bottom: 0;
+        font-size: 0;
+        text-align: center;
+        
+        & a {
+          height: auto;
+          margin: 0;
+          font-size: 17px;
+          font-weight: normal;
+          text-decoration: none;
+        }
+      }  
+    }
+    
+    & li.last {
+      border: none;
+    }
+  }
+  
+  // Отзывы
+  #video-reviews_wrapper {
+    width: auto;
+    margin-right: 15px;
+    margin-left: 15px;
+    padding-top: 20px;
+    border-top: 8px solid black;
+  }
+  
+  #video_caption {
+    position: relative;
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  #video-carousel {
+    
+    & ul {
+       
+       & li {
+         margin: 0;
+         padding: 0;
+         list-style: none;
+         
+         &:not(:nth-child(1)) {
+           display: none;
+         }
+         
+         & a {
+           position: relative;
+           display: block;
+
+           & img {
+             width: 100%;
+             height: auto            
+           }  
+           
+           .fa-play-circle-o {
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             margin: 0;
+             font-size: 42pt;
+             transform: translate(-21pt, -21pt);
+           }
+         }
+         
+         & .desc {
+           left: 0;
+           font-size: 16px;
+           
+           & .company {
+             font-size: inherit;
+           }
+         }
+      }
+    }
+  }
+  
+  .rcarousel-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    & #rcarousel-prev,
+    & #rcarousel-next {
+      width: 25px;
+      height: 20px;
+    }
+    
+    & img {
+      margin-right: 10px;
+      margin-left: 10px;
+      
+      &:first-child {
+        margin-left: 0;
+      }
+      
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  
+  #rcarousel {
+    display: flex;
+    justify-content: flex-start;
+    width: 80% !important;
+    height: auto !important;
+    margin: 0 15px;
+    overflow-x: hidden;
+    
+    & img {
+      width: 110px;
+      height: 60px;
+    }
+  }
+  
+  #rcarousel-prev,
+  #rcarousel-next {
+    background-size: 25px auto;
+    transform: rotate(-90deg);
+  }
+
+  #content-front {
+    display: none;
+  }
+  
+  // Кейсы
+  #block-views-blog-block {
+    margin-right: 15px;
+    margin-left: 15px;
+    
+    & h2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      padding: 0;
+      
+      & span {
+        font-size: 22px;
+        letter-spacing: normal;
+      }
+      
+      & a {
+        top: 0;
+      }
+    }
+    
+    & h3 {
+      margin-bottom: 0;
+    }
+    
+    & .view-content {
+      display: flex;
+      flex-direction: column;
+      margin-top: 5px;
+      border-left: none;
+      
+      & .views-row {
+        width: auto;
+        padding: 15px 0;
+        border-right: none;
+        border-bottom: 1px solid #bababa;
+        
+        &:first-child,
+        &:last-child {
+          display: none;
+        }
+        
+        &:nth-child(4) {
+          border-bottom: none;
+        }
+        
+        & a {
+          text-decoration: none;
+        }
+        
+        & .content {
+          display: none;
+        }
+      }
+    }
+  }
+  
+  // Клиенты
+  #block-views-clients-block {
+    margin-right: 15px;
+    margin-left: 15px;
+    
+    & h2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      padding: 0;
+      font-size: 22px;
+      letter-spacing: normal;
+      
+      & a {
+        top: 0;
+      }
+    }
+    
+    & .content {
+      
+      & .view {
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+        
+        
+        #clients_front_wrapper_left,
+        #clients_front_wrapper_right {
+          width: 20px;
+          height: auto;
+          background-size: 17px auto;
+        }
+        
+        & #clients_front_wrapper {
+          width: 80%;
+          height: auto;
+          margin: 0 auto;
+          
+          & #clients_front_container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: auto;
+            margin: 0 auto;
+            
+            & .item {
+              
+              & a {
+                display: block;
+                width: 100px;
+                height: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Social media
+  #social {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    order: 5;
+    min-height: 80px;
+    margin: 0 15px;
+    padding-top: 0;
+    
+    & #social-facebook {
+      order: 1;
+      width: auto !important;
+      font-size: 20px;
+      
+      & .fb_iframe_widget {
+        width: auto !important;
+      }
+    }
+    
+    & #social-share {
+      order: 2;
+      
+      & .b-share__handle {
+        
+        
+        & .b-share-icon {
+          width: 17px;
+          height: 17px;
+        }
+      } 
+    }
+  }
+  
+  // Футер
+  #footer {
+    width: auto;
+    height: auto;
+    margin-top: 25px;
+    margin-bottom: 90px;
+    margin-right: 15px;
+    margin-left: 15px;
+    
+    
+    & .secondary-menu-outer {
+      margin-top: 0;
+      
+      
+      & .secondary-menu-wrapper {
+        width: auto;
+        margin-left: 0;
+        
+        & .secondary-menu {
+          display: flex !important;
+          flex-wrap: wrap;
+          height: auto;
+          font-size: 16px;
+          
+          & li {
+            position: relative;
+            width: auto;
+            margin-bottom: 5px !important;
+            padding: 7px 0;
+            margin-right: 30px !important;
+            
+            & a {
+              margin-left: 0 !important;
+              padding-right: 0;
+              border: none;
+            }
+            
+            &::after {
+              content: "";
+              position: absolute;
+              top: 0;
+              right: -15px;
+              width: 1px;
+              height: 100%;
+              background-color: #bababa;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .region-footer-menu {
+    display: none;
+  }
+  
+  #footer-contacts {
+    display: none;
+  }
+  
+  #footer-copyright {
+    display: none;
+  }
+  
+  .privacy-policy {
+    margin-bottom: 20px;
+  }
+  
+  .full-version {
+    margin-bottom: 15px;
+  }
+  
+  // Контакты для обратной связи
+  .contacts-block {
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: white;
+    
+    & a {
+      width: 60px;
+      height: 60px;
+      margin: 15px;
+      background-repeat: no-repeat;
+      background-size: 60px auto;
+      
+      &:nth-child(1) {
+        background-image: url("../img/call.png");
+      }
+      
+      &:nth-child(2) {
+        background-image: url("../img/email.png");
+      }
+      
+      &:nth-child(3) {
+        background-image: url("../img/facebook-footer.png");
+      }
+    }
+  }
+}
 
